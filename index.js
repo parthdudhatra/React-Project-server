@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4200;
 // import userRoutes from "./routes/user"
 const authrouter = require("./routes/auth-route");
 const mongoose = require("mongoose");
@@ -17,7 +17,7 @@ app.use(
 app.use(express.json());
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 //monoose
