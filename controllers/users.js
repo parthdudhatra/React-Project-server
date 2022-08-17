@@ -57,20 +57,26 @@ exports.deleteUser = (req, res ) => {
 
 //update user
 exports.updateUser = (req, res ) => {
-    User.findByIdAndUpdate(
-        req.params.id,
+  // console.log("res", res);
+
+  console.log("req",req.body)
+    User.findOneAndUpdate(
+        { _id :req.params.id },
         {
           $set: req.body,
         },
+        { upsert: false, new : true },
+        // lean(),
         (error, data) => {
           if (error) {
             console.log(error);
           } else {
             res.json(data);
+            console.log("///",data)
             console.log("Employee updated successfully");
           }
         }
-      );
+      ).lean()
     // const user = users.find((user) => user.id === req.params.id);
     // user.name = req.body.name;
     // user.email = req.body.email;
